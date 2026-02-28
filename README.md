@@ -1,5 +1,5 @@
 # olist-analysis
-This project involves an in-depth analysis of an Olist sales dataset. The goal is to uncover insights into sales trends, revenue performance and consistency, and shipping metrics to support business decision-making, optimize inventory, and improve customer experience.
+This project involves an in-depth analysis of an Olist sales dataset. The goal is to uncover insights into sales trends, revenue performance and revenue volatility, and shipping metrics to support business decision-making, optimize inventory, and improve customer experience.
 
 # Dataset-Description
   TABLE 1: OLIST ORDER ITEMS.
@@ -10,8 +10,9 @@ This project involves an in-depth analysis of an Olist sales dataset. The goal i
 | product id  |string | text         | unique identifier for each product.        |
 | seller id      | string |text          | unique identifier for each order seller.       |
 |shopping limit date| timestamp with timezone | timestamp with timezone | deadline to complete a purchase.|
-| price| numeric | numeric | price of order.|
+| price| numeric | numeric | price of order item.|
 |freight value| numeric| numeric|shipping cost.|
+
 DATASET SIZE: 112650 rows, 7 columns.
 
    TABLE 2: ORDER REVIEWS.
@@ -21,9 +22,10 @@ DATASET SIZE: 112650 rows, 7 columns.
 | order id | string |text| unique identifier of each order.|
 | review score| integer | integer |score given for product quality.|
 | review comment title|text|text| title of review.|
-| review comment message| text| text| emphasis of the review|
+| review comment message| text| text|content of the review.|
 |review creation date| timestamp without time zone|timestamp without time zone|date review was created.|
 |review answer timestamp| time without timezone| time without timezone| time of day review was answered.|
+
 DATASET SIZE: 99224 rows, 8 columns.
 
   TABLE 3: ORDERS.
@@ -34,9 +36,10 @@ DATASET SIZE: 99224 rows, 8 columns.
 | order status      | text |text          | completion level of order.       |
 | order purchase timestamp | timestamp without time zone | timestamp without time zone| time of order.|
 | order approved at| timestamp without time zone | timestamp without time zone | time of order approval.|
-|order delivered carrier date| timestamp without time zone| timestamp without time zone| shiping commencement from the carrier.|
+|order delivered carrier date| timestamp without time zone| timestamp without time zone| shipping commencement from the carrier.|
 | order delivered customer date| timestamp without time zone| timestamp without time zone| delivered date.|
-| order estmated delivery date| timestamp without time zone | timestamp without time zone | supposed time of delivery.| 
+| order estimated delivery date| timestamp without time zone | timestamp without time zone | supposed time of delivery.| 
+
 DATASET SIZE: 99441 rows, 8 columns.
 
    TABLE 4: PRODUCT CATEGORY NAME TRANSLATION.
@@ -44,6 +47,7 @@ DATASET SIZE: 99441 rows, 8 columns.
 |----------------|---------------|----------------|-------------|
 | product category name | text |text|product category name in its original language.|
 | product category name english| text | text |product category name in english.|
+
 DATASET SIZE: 71 rows, 2 columns.
 
    TABLE 5: SELLER PERFORMANCE BASE. 
@@ -60,48 +64,46 @@ DATASET SIZE: 71 rows, 2 columns.
 |revenue| integer| numeric| revenue per seller.|
 |quantity| integer| bigint| quantity of items purchased.|
 |order status| text|text| completion level of order.|
+
 DATASET SIZE: 102425 rows,11 columns.
 
    TABLE 6: SELLERS.
 | Column name      | Data-Type | Data-Type Saved in PostgreSQL  | Description |
 |----------------|---------------|----------------|-------------|
-|seller id| string| text|unique identifier of each product.|
+|seller id| string| text|unique identifier of each seller.|
 |seller zip code| integer|integer| zip code of seller.|
 |seller city| text|text| city of seller.|
 |seller state| text|text| state of seller.|
+
 DATASET SIZE: 3095 rows, 4 columns.
 
 # Objectives
-1. Identify superstore shipping efficiency.
-2. Analyze category revenue and performance.
-3. Identify profit generation with each City.
+1. Identify Olist shipping efficiency.
+2. Identify Olist seller efficiency.
+3. Analyze trends.
+4. Identify seller revenue.
 
 # Data cleaning and reprocessing
-1. Removed 11 duplicates.
-2. Confirmed all dates standard to DD/MM/YYYY.
+1. Removed multiple duplicates.
+2. Confirmed all dates standard to YYYY-MM-DD.
 3. Formatted uneven segments.
    
 # Revenue Data Analysis
-  Total revenue: $2,260,280.2572
+  Total revenue: R$13,591,643.70
 
 # Insights
-1. A little more than 1% of customers spent more than ten thousand dollars within the span of three years.
-2. The total average shipping days is 22.60 days, this is due to stores having delivery spans of up to 50 days.
-3. 59%  of stores possess orders with delivery averages of more than ten days with 25% having more than 50 days.
-4. 10% of stores have delivery days of more than 100 days per orders.
-5. These long delivery spans despite being in geographically secure areas could be due to outlier factors as further investigation into suspicious cities revealed orders in these city are rare and non constant.
-6. long delivery days are rare but upon occurring severely influence the average delivery days. physical investigation into these branches are advised.
+1. Only 2.7% of sellers have a revenue of R$1,000 per active day.
+2. 97% of sellers have a delivery span of less than 20 days
+3. Months March through August show to be the most revenue dense months with September, October and December showing notable revenue decline despite December being a major holiday month. 
+4. 97% of orders were succesful deliveries.
+5. The top 20% of sellers have volatility less than 50% of total revenue standard deviation.
 
-# City Revenue Analysis
-1. The ten highest revenue earners make up 69.1% of total revenue.
 
 # Key Findings
-1. Review comment titles and review comment message are mostly null, this is most likely due to reviewers not specifying the reason for the review and not missing data.
-2. There is notable increase in sales in the months March and August through December with the highest sales metrics at September, November and December. There is also a sharp decline in the sales in the month of February despite being a holiday month.
-3. November and December increase in sales are most likely due to year end holidays. September shows an unexpected sales spike not directly aligned with major retail holidays. Further investigation into promotional or demographic drivers is recommended.
-4. Western and eastern regions possess almost two times the sales as the central and southern regions likely due to higher population in those regions.
-5. The Technology category is the highest generator of revenue though there isn't a major disparity between the other two categories.
+1. Olist sellers are highly efficient and possess high delivery value.
+2. An investigation of Brazilian holiday culture need to be done.
+
 
 # Key Notes
-1. Shipping days may be negatively influenced.
-2. A September demographic investigation should be carried out.
+1. Null values were kept due to need to preserve uniformity of data structure.
+2. In order to remove the need for join functions and also create columns with prepared data for future use, new tables named seller performancance and seller delivery base were created using the create table function.
