@@ -13,6 +13,7 @@ This project involves an in-depth analysis of an Olist sales dataset. The goal i
 | price| numeric | numeric | price of order item.|
 |freight value| numeric| numeric|shipping cost.|
 
+
 DATASET SIZE: 112650 rows, 7 columns.
 
    TABLE 2: ORDER REVIEWS.
@@ -25,6 +26,7 @@ DATASET SIZE: 112650 rows, 7 columns.
 | review comment message| text| text|content of the review.|
 |review creation date| timestamp without time zone|timestamp without time zone|date review was created.|
 |review answer timestamp| time without timezone| time without timezone| time of day review was answered.|
+
 
 DATASET SIZE: 99224 rows, 8 columns.
 
@@ -40,6 +42,7 @@ DATASET SIZE: 99224 rows, 8 columns.
 | order delivered customer date| timestamp without time zone| timestamp without time zone| delivered date.|
 | order estimated delivery date| timestamp without time zone | timestamp without time zone | supposed time of delivery.| 
 
+
 DATASET SIZE: 99441 rows, 8 columns.
 
    TABLE 4: PRODUCT CATEGORY NAME TRANSLATION.
@@ -47,6 +50,7 @@ DATASET SIZE: 99441 rows, 8 columns.
 |----------------|---------------|----------------|-------------|
 | product category name | text |text|product category name in its original language.|
 | product category name english| text | text |product category name in english.|
+
 
 DATASET SIZE: 71 rows, 2 columns.
 
@@ -65,6 +69,7 @@ DATASET SIZE: 71 rows, 2 columns.
 |quantity| integer| bigint| quantity of items purchased.|
 |order status| text|text| completion level of order.|
 
+
 DATASET SIZE: 102425 rows,11 columns.
 
    TABLE 6: SELLERS.
@@ -74,6 +79,7 @@ DATASET SIZE: 102425 rows,11 columns.
 |seller zip code| integer|integer| zip code of seller.|
 |seller city| text|text| city of seller.|
 |seller state| text|text| state of seller.|
+
 
 DATASET SIZE: 3095 rows, 4 columns.
 
