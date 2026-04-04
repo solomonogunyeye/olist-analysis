@@ -15,7 +15,6 @@ This project involves an in-depth analysis of the Olist sales dataset. The goal 
 | **Source** | Kaggle |
 | **Scope** | Brazilian e-commerce transactions|
 | **Size** | 500,000+ across 6 Tables |
-| **Period** | January 2016 – December 2018 |
 | **Key columns** | Crders, Customers, Sellers, Reviews |
 
 
@@ -68,7 +67,7 @@ GROUP BY
 
  
 # Insights
-1. 2.7% of sellers have a revenue of less than R$1,000 per active day.
+1. 2.7% of sellers have a revenue of more than R$1,000 per active day with the highest revenue per active day being R$6,729.
 2. 97% of sellers have a delivery span of less than 20 days
 3. Months March through August show to be the most revenue dense months with September, October and December showing notable revenue decline despite December being a major holiday month. 
 4. 97% of orders were succesful deliveries.
@@ -77,9 +76,10 @@ GROUP BY
 
 # Key Findings
 1. Olist sellers are highly efficient and possess high delivery value.
-2. An investigation of Brazilian holiday culture need to be done.
-
+2. After an investigation of Brazilian holiday culture was done, it seems that september and october seem to be rest months from previous high sale months as no major commercial holidays.
+3. Most christmas purchases in Brazil are done in November, explaining the spike in November sales.
+4. December is also mostly registered as a travel period during the Christmas and Carnival months, not a spending period.
 
 # Key Notes
-1. Null values were kept due to need to preserve uniformity of data structure.
+1. Null values were retained as they represent orders that were not yet delivered at the time of data collection, they also represent cancellations, in-transit orders, or failed deliveries. Removing them would have artificially inflated delivery performance metrics by excluding the worst-performing orders from the average.
 2. In order to remove the need for join functions and also create columns with prepared data for future use, new tables named seller performancance and seller delivery base were created using the create table function.
