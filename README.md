@@ -19,12 +19,12 @@ This project involves an in-depth analysis of the Olist sales dataset. The goal 
 
 
 # Data cleaning and reprocessing
-1. Removed multiple duplicates.
-2. Confirmed all dates standard to YYYY-MM-DD.
-3. Formatted uneven segments.
+1. Removed multiple duplicates rows.
+2. Confirmed all dates standard to YYYY-MM-DD as a majority of the dates were misaligned.
+3. Formatted uneven segments across multiple rows.
    
 # Revenue Data Analysis
-  Total revenue: R$13,591,643.70
+  Total revenue: R$13,591,643.70 with 2.7% of sellers contributing to 46% of Total revenue.
 
   ## SQL Approach
 Key techniques used:
@@ -71,7 +71,7 @@ GROUP BY
 2. 97% of sellers have a delivery span of less than 20 days
 3. Months March through August show to be the most revenue dense months with September, October and December showing notable revenue decline despite December being a major holiday month. 
 4. 97% of orders were succesful deliveries.
-5. The top 20% of sellers have volatility less than 50% of total revenue standard deviation.
+5. The top 20% of sellers have volatility less than 50% of total revenue standard deviation, this shows reliability from sellers and higher partner potential.
 
 
 # Key Findings
