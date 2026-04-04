@@ -5,8 +5,8 @@ This project involves an in-depth analysis of the Olist sales dataset. The goal 
 # Objectives
 1. Identify Olist shipping efficiency.
 2. Identify Olist seller efficiency.
-3. Analyze trends.
-4. Identify seller revenue.
+3. Analyze and identify sales trends.
+4. deliver precise seller revenue.
 
    
 ##  Dataset
@@ -68,7 +68,7 @@ GROUP BY
 
  
 # Insights
-1. Only 2.7% of sellers have a revenue of R$1,000 per active day.
+1. 2.7% of sellers have a revenue of less than R$1,000 per active day.
 2. 97% of sellers have a delivery span of less than 20 days
 3. Months March through August show to be the most revenue dense months with September, October and December showing notable revenue decline despite December being a major holiday month. 
 4. 97% of orders were succesful deliveries.
