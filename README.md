@@ -83,3 +83,4 @@ GROUP BY
 # Key Notes
 1. Null values were retained as they represent orders that were not yet delivered at the time of data collection, they also represent cancellations, in-transit orders, or failed deliveries. Removing them would have artificially inflated delivery performance metrics by excluding the worst-performing orders from the average.
 2. In order to remove the need for join functions and also create columns with prepared data for future use, new tables named seller performancance and seller delivery base were created using the create table function.
+3. The base table was built at order-product grain to preserve transaction-level detail for downstream flexibility. The avg_delivery_days column is better described as delivery days per order — a true seller-level average would be computed on top of this table by grouping on seller_id.
