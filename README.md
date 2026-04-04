@@ -1,5 +1,5 @@
 # olist-analysis
-This project involves an in-depth analysis of an Olist sales dataset. The goal is to uncover insights into sales trends, revenue performance and revenue volatility, and shipping metrics to support business decision-making, optimize inventory, and improve customer experience.
+This project involves an in-depth analysis of the Olist sales dataset. The goal is to uncover insights into sales trends, revenue performance and revenue volatility, and shipping metrics to support business decision-making, optimize inventory, and improve customer experience.
 
 
 # Objectives
@@ -7,6 +7,17 @@ This project involves an in-depth analysis of an Olist sales dataset. The goal i
 2. Identify Olist seller efficiency.
 3. Analyze trends.
 4. Identify seller revenue.
+
+   
+##  Dataset
+| Detail | Info |
+|---|---|
+| **Source** | Kaggle |
+| **Scope** | Brazilian e-commerce transactions|
+| **Size** | 500,000+ across 6 Tables |
+| **Period** | January 2016 – December 2018 |
+| **Key columns** | Crders, Customers, Sellers, Reviews |
+
 
 # Data cleaning and reprocessing
 1. Removed multiple duplicates.
@@ -16,6 +27,46 @@ This project involves an in-depth analysis of an Olist sales dataset. The goal i
 # Revenue Data Analysis
   Total revenue: R$13,591,643.70
 
+  ## SQL Approach
+Key techniques used:
+- Window functions for revenue ranking across sellers
+- CTE structure for the creation of the seller delivery and seller performance base.
+```sql
+CREATE TABLE seller_delivery_base AS
+SELECT
+    olist_order_items.seller_id,
+    orders.orders_id,
+    orders.order_purchase_timestamp AS order_time,
+    DATE(orders.order_purchase_timestamp) AS order_date,
+    EXTRACT(MONTH FROM orders.order_purchase_timestamp) AS order_month,
+    EXTRACT(YEAR FROM orders.order_purchase_timestamp) AS order_year,
+	 AVG(
+        DATE_PART(
+            'day',
+            order_delivered_customer_date - order_purchase_timestamp
+        )
+    ) AS avg_delivery_days,
+    olist_order_items.product_id,
+    SUM(olist_order_items.price) AS revenue,
+    COUNT(olist_order_items.order_item_id) AS quantity,
+    orders.order_status
+FROM orders
+JOIN olist_order_items
+    ON orders.orders_id = olist_order_items.order_id
+JOIN sellers
+    ON olist_order_items.seller_id = sellers.seller_id
+GROUP BY
+    olist_order_items.seller_id,
+    orders.orders_id,
+    orders.order_purchase_timestamp,
+    olist_order_items.product_id,
+    orders.order_status;
+```
+
+# Dashboard preview
+![Olist Dashboard](images/dashboard%20prv%206.png)
+
+ 
 # Insights
 1. Only 2.7% of sellers have a revenue of R$1,000 per active day.
 2. 97% of sellers have a delivery span of less than 20 days
