@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/Olist Analysis Banner.png">
+</p>
+
 # olist-analysis
 This project involves an in-depth analysis of the Olist sales dataset. The goal is to uncover insights into sales trends, revenue performance and revenue volatility, and shipping metrics to support business decision-making, optimize inventory, and improve customer experience.
 
